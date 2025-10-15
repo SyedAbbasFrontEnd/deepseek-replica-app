@@ -38,6 +38,6 @@ export const sendPromt = async (req, res) => {
     console.log("Error in Promt: ", error);
     return res
       .status(500)
-      .json({ error: "Something went wrong with the AI response" });
+      .json({ error: "Something went wrong with the AI response." });
   }
 };

@@ -8,7 +8,7 @@ export const signup = async (req, res) => {
   try {
     const user = await User.findOne({ email: email });
     if (user) {
-      return res.status(401).json({ errors: "User already exist" });
+      return res.status(401).json({ errors: "User already exist." });
     }
     const hashPassword = await bcrypt.hash(password, 10);
     const newuser = new User({
@@ -18,7 +18,7 @@ export const signup = async (req, res) => {
       password: hashPassword,
     });
     await newuser.save();
-    return res.status(201).json({ message: "signup succeeded" });
+    return res.status(201).json({ message: "signup succeeded.." });
   } catch (error) {
     console.log("Error in signup: ", error);
     return res.status(500).json({ errors: "Error in signup" });
@@ -52,19 +52,19 @@ export const login = async (req, res) => {
     res.cookie("jwt", token, cookieOptions);
     return res
       .status(201)
-      .json({ message: "User loggedin succeeded", user, token });
+      .json({ message: "User logged in successfully.", user, token });
   } catch (error) {
     console.log("Error in login: ", error);
-    return res.status(500).json({ errors: "Error in login" });
+    return res.status(500).json({ errors: "Error in login." });
   }
 };
 
 export const logout = (req, res) => {
   try {
     res.clearCookie("jwt");
-    return res.status(200).json({ message: "Loggout succeeded" });
+    return res.status(200).json({ message: "User Loggout successfully." });
   } catch (error) {
     console.log("Error in logout: ", error);
-    return res.status(500).json({ errors: "Error in logout" });
+    return res.status(500).json({ errors: "Error in logout." });
   }
 };
